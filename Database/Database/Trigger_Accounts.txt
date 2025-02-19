@@ -1,0 +1,14 @@
+create or replace trigger biaccount before insert on accounts for each row 
+Declare
+Begin
+	if(length(:new.account_number)!=10)then
+		raise_application_error(-20001,'Account number must be 10 number');
+	end if;
+	for i in 1.. length(:new.account_number)
+	loop
+		if(ascii(substr(:new.account_number,i,1))not between 48 and 57 )then
+			raise_application_error(-20018,'Only number');
+		end if;
+	end loop;
+end;
+/

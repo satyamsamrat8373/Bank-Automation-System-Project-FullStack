@@ -1,0 +1,8 @@
+create or replace trigger bibranches before insert on branches for each row 
+Declare
+Begin
+	if(lower(:new.branch_id) not like 'b%')then
+		raise_application_error(-20001,'ID must starts with B');
+	end if;
+end;
+/

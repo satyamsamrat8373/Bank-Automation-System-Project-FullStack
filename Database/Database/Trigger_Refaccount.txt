@@ -1,0 +1,15 @@
+create or replace trigger birat2 before insert on ref_account_type for each row 
+Declare
+Begin
+	if(length(:new.account_type_code)!=10)then
+		raise_application_error(-20002,'Account type code must be 10 number');
+
+	end if;
+end;
+/
+
+
+
+
+
+

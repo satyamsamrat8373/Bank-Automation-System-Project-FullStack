@@ -1,0 +1,8 @@
+create or replace trigger bibank1 before insert on bank for each row 
+Declare
+Begin
+	if(lower(:new.bank_id) not like 'b%')then
+		raise_application_error(-20001,'ID must starts with B');
+	end if;
+end;
+/

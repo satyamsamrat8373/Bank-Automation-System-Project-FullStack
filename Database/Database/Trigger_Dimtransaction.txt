@@ -1,0 +1,8 @@
+create or replace trigger biditt before insert on dimtransactiontype for each row 
+Declare
+Begin
+	if(lower(:new.trans_type_code) not like 't%')then
+		raise_application_error(-20001,'ID must starts with t');
+	end if;
+end;
+/

@@ -1,0 +1,8 @@
+create or replace trigger birbt before insert on ref_branch_type for each row 
+Declare
+Begin
+	if(lower(:new.branch_type_code) not like 'b%')then
+		raise_application_error(-20003,'ID must starts with B');
+	end if;
+end;
+/
